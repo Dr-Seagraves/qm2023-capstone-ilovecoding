@@ -1,0 +1,21 @@
+id,category,description,details
+1,project_name,QM 2023 Capstone Project,Semester-long capstone for Statistics II: Data Analytics
+2,research_question_1,REIT Data Analysis,Reit Data and Climate Change Risk Measures (Skiadopoulos et al.)
+3,research_question_2,Housing Market Impact,How climate change affects predicted housing rates in the US
+4,research_question_3,Market Correlation Analysis,Analyzing public and investor reactions to climate change and their impact on stock market
+5,research_question_4,Comparative Analysis,Comparing climate change trends in stock market to REIT performance data
+6,research_objective_1,Correlation Analysis,Determine whether a correlation exists between climate trends and REIT performance
+7,research_objective_2,Future Projections,Use findings to project how climate change may influence the future housing market
+8,research_objective_3,Demographic Impact,Identify which generations are likely to be most affected by climate change housing impacts
+9,data_source_1,Primary Focus,REIT (Real Estate Investment Trust) performance data
+10,data_source_2,Secondary Focus,Climate change risk measures
+11,data_source_3,Market Data,Stock market performance data
+12,data_source_4,Market Data,Public and investor reaction indicators
+13,directory_code,Project Structure,Python scripts and notebooks - Use config_paths.py for paths
+14,directory_data_raw,Project Structure,Original data (read-only)
+15,directory_data_processed,Project Structure,Intermediate cleaning outputs
+16,directory_data_final,Project Structure,M1 output: analysis-ready panel
+17,directory_results_figures,Project Structure,Visualizations
+18,directory_results_tables,Project Structure,Regression tables and summary statistics
+19,directory_results_reports,Project Structure,Milestone memos
+20,directory_tests,Project Structure,Autograding test suite

@@ -1,0 +1,5 @@
+research_question,key_data_sources,analysis_type,objective
+How does climate change affect predicted housing rates in the US?,Housing rate data; Climate risk measures,Predictive Analysis,Understand climate impact on housing market
+What is the relationship between climate change and REIT performance?,REIT data; Climate risk measures,Correlation Analysis,Identify climate-REIT connection
+How do public/investor reactions to climate change influence stock market?,Stock market data; Investor sentiment data,Sentiment Analysis,Analyze market reaction to climate concerns
+Can we project future housing market impacts from climate trends?,REIT data; Housing rates; Climate data; Generational data,Forecasting,Predict future housing market; Identify affected generations
