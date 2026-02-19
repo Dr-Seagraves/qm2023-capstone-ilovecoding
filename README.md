@@ -20,4 +20,26 @@ Semester-long capstone for Statistics II: Data Analytics.
 - **results/reports/** — Milestone memos
 - **tests/** — Autograding test suite
 
-Run `python code/config_paths.py` to verify paths.
+## Getting Started
+
+1. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Verify project structure:**
+   ```bash
+   python code/config_paths.py
+   ```
+
+## Data Cleaning Scripts
+
+- **`code/fetch_REIT_data.py`** — REIT sample data cleaning pipeline
+- **`code/fetch_Climate_data.py`** — Climate and stocks data cleaning pipeline
+
+Run scripts from project root:
+```bash
+python code/fetch_REIT_data.py
+python code/fetch_Climate_data.py
+```
+
