@@ -29,11 +29,12 @@ Semester-long capstone for Statistics II: Data Analytics.
 
 ## Data Cleaning Scripts
 
-- **`code/fetch_dataset1_data.py`** — REIT sample data cleaning pipeline
-- **`code/fetch_dataset2_data.py`** — Template for secondary dataset
+- **`code/fetch_REIT_data.py`** — REIT sample data cleaning pipeline
+- **`code/fetch_Climate_data.py`** — Climate and stocks data cleaning pipeline
 
 Run scripts from project root:
 ```bash
-python code/fetch_dataset1_data.py
+python code/fetch_REIT_data.py
+python code/fetch_Climate_data.py
 ```
 
