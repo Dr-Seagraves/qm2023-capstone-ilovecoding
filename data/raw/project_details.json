@@ -1,0 +1,83 @@
+{
+  "project": {
+    "name": "QM 2023 Capstone Project",
+    "description": "Semester-long capstone for Statistics II: Data Analytics",
+    "course": "Statistics II: Data Analytics"
+  },
+  "research_focus": {
+    "primary_topic": "Climate Change Impact on Real Estate and Housing Markets",
+    "research_questions": [
+      "How does climate change affect predicted housing rates in the US?",
+      "What is the relationship between climate change risk measures and REIT performance?",
+      "How do public and investor reactions to climate change influence stock market performance?",
+      "Can we correlate climate change trends with REIT performance data?"
+    ],
+    "research_objectives": [
+      "Analyze REIT data and climate change risk measures",
+      "Determine if a correlation exists between climate trends and REIT performance",
+      "Project how climate change may influence the future housing market",
+      "Identify which generations are likely to be most affected"
+    ]
+  },
+  "data_sources": [
+    {
+      "type": "REIT Performance Data",
+      "description": "Real Estate Investment Trust performance metrics"
+    },
+    {
+      "type": "Climate Change Risk Measures",
+      "description": "Based on Skiadopoulos et al. research paper"
+    },
+    {
+      "type": "Stock Market Data",
+      "description": "Stock market performance and trends"
+    },
+    {
+      "type": "Housing Rate Data",
+      "description": "US housing rates and predictions"
+    },
+    {
+      "type": "Investor Sentiment Data",
+      "description": "Public and investor reactions to climate change"
+    }
+  ],
+  "project_structure": {
+    "code": {
+      "path": "code/",
+      "description": "Python scripts and notebooks",
+      "note": "Use config_paths.py for paths"
+    },
+    "data": {
+      "raw": {
+        "path": "data/raw/",
+        "description": "Original data (read-only)"
+      },
+      "processed": {
+        "path": "data/processed/",
+        "description": "Intermediate cleaning outputs"
+      },
+      "final": {
+        "path": "data/final/",
+        "description": "M1 output: analysis-ready panel"
+      }
+    },
+    "results": {
+      "figures": {
+        "path": "results/figures/",
+        "description": "Visualizations"
+      },
+      "tables": {
+        "path": "results/tables/",
+        "description": "Regression tables and summary statistics"
+      },
+      "reports": {
+        "path": "results/reports/",
+        "description": "Milestone memos"
+      }
+    },
+    "tests": {
+      "path": "tests/",
+      "description": "Autograding test suite"
+    }
+  }
+}
