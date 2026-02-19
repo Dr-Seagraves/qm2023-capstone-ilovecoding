@@ -1,29 +1,33 @@
 """
-QM 2023 Capstone Project: M1 - Dataset2 Data Fetch & Clean
-Team: [Your Team Name]
-Members: [List names]
+QM 2023 Capstone Project: M1 - Climate and Stocks Data Fetch & Clean
+Team: [ILOVECODING]
+Members: [Aniya Facen, Ashley Seale, Olivia Williamson, Yuri Rodriguez]
 
-This script fetches/loads the secondary dataset, cleans it, and saves
-the cleaned version to data/processed/.
+This script fetches/loads climate and stock market data, cleans it,
+and saves the cleaned version to data/processed/.
 
-This is an alternative example showing:
-  - Different data source (could be from API, database, etc.)
-  - Custom filters specific to dataset2
-  - Alternative outlier handling approach
-  - Validation checks
+Data Source: Climate impact metrics and corresponding stock performance
+Combines environmental/climate risk factors with equity returns
+
+This is an alternative pipeline showing:
+  - Different data source structure
+  - Custom filters for climate/ESG data
+  - Z-score outlier handling (alternative to Winsorization)
+  - Validation checks for paired observations
 
 Pipeline steps:
-  1. Load raw data
-  2. Clean missing values
-  3. Handle outliers
+  1. Load raw climate and stocks data
+  2. Clean missing values (impute/drop)
+  3. Handle outliers (z-score method)
   4. Remove duplicates
-  5. Apply size/volume filters
-  6. Data validation checks
-  7. Save cleaned data
+  5. Align dates between climate and stock datasets
+  6. Apply quality & completeness filters
+  7. Data validation checks
+  8. Save cleaned data
 
-Author: [Your Names]
-Date: [Date Created]
-Last Modified: [Date]
+Author: [Ashley]
+Date: [2/19/2026]
+Last Modified: [2/19/2026]
 """
 
 # ============================================================================
@@ -49,13 +53,24 @@ logger = logging.getLogger(__name__)
 # Section 2: Configuration & Constants
 # ============================================================================
 
-RAW_FILENAME = "dataset2_raw.csv"
-PROCESSED_FILENAME = "dataset2_clean.csv"
+# Input/Output file names
+RAW_FILENAME = "climate_stocks_raw.csv"  # Raw climate and stocks data
+PROCESSED_FILENAME = "climate_stocks_clean.csv"  # Output for data/processed/
 
 # Data quality thresholds
-MIN_OBSERVATIONS = 10  # Minimum samples per group
-MISSING_THRESHOLD = 0.7  # Drop columns with >70% missing
+MIN_OBSERVATIONS = 20  # Minimum company-date observations
+MISSING_THRESHOLD = 0.6  # Drop columns with >60% missing
 DATE_FORMAT = "%Y-%m-%d"  # Expected date format
+
+# Climate and stocks specific filters
+MIN_STOCK_PRICE = 1.0  # Filter out penny stocks (<$1)
+MIN_CLIMATE_SCORE = 0  # Minimum ESG/climate score
+START_DATE = "2000-01-01"  # Analysis period start
+END_DATE = "2024-12-31"  # Analysis period end
+
+# Key columns for validation
+REQUIRED_COLUMNS = ['date', 'ticker', 'stock_price', 'climate_score', 'returns']
+
 
 # ============================================================================
 # Section 3: Load Raw Data
@@ -203,36 +218,75 @@ def remove_duplicates(df):
 
 def apply_filters(df):
     """
-    Apply dataset2-specific filters and validation.
+    Apply climate and stocks specific filters and validation.
     
-    Example: If this is time-series data, transaction data, or group data,
-    add filters relevant to that domain.
+    Filters:
+      1. Date range: Keep only observations between START_DATE and END_DATE
+      2. Stock price: Remove penny stocks (<$MIN_STOCK_PRICE)
+      3. Climate score: Remove observations with missing climate scores
+      4. Paired data: Keep only rows with both stock price and climate data
+      5. Returns validity: Ensure returns are computable
+      6. Company observations: Keep only companies with MIN_OBSERVATIONS periods
     """
     logger.info("=" * 50)
-    logger.info("APPLYING FILTERS & VALIDATION")
+    logger.info("APPLYING CLIMATE & STOCKS FILTERS")
     logger.info("=" * 50)
     
     rows_before = len(df)
     
-    # EXAMPLE: Filter by data quality
-    numeric_cols = df.select_dtypes(include=[np.number]).columns
-    if len(numeric_cols) > 0:
-        # Remove rows where all numeric values are zero
-        all_zero_rows = (df[numeric_cols] == 0).all(axis=1)
-        logger.info(f"  All-zero rows found: {all_zero_rows.sum()}")
-        if all_zero_rows.sum() > 0:
-            df = df[~all_zero_rows]
-            logger.info(f"  Removed {all_zero_rows.sum()} all-zero rows")
+    # FILTER 1: Date range
+    if 'date' in df.columns:
+        df['date'] = pd.to_datetime(df['date'])
+        df = df[(df['date'] >= START_DATE) & (df['date'] <= END_DATE)]
+        logger.info(f"  Filter 1: Date range {START_DATE} to {END_DATE}")
     
-    # EXAMPLE: Group size filter (if you have grouping columns)
-    # Uncomment and adapt if dataset has groups/categories:
-    # if 'group_id' in df.columns:
-    #     group_counts = df['group_id'].value_counts()
-    #     small_groups = group_counts[group_counts < MIN_OBSERVATIONS].index
-    #     df = df[~df['group_id'].isin(small_groups)]
-    #     logger.info(f"  Removed {len(small_groups)} groups with <{MIN_OBSERVATIONS} observations")
+    # FILTER 2: Stock price threshold (remove penny stocks)
+    if 'stock_price' in df.columns:
+        price_before = len(df)
+        df = df[df['stock_price'] >= MIN_STOCK_PRICE]
+        price_removed = price_before - len(df)
+        logger.info(f"  Filter 2: Stock price >= ${MIN_STOCK_PRICE} (removed {price_removed} rows)")
+    
+    # FILTER 3: Climate score validity
+    if 'climate_score' in df.columns:
+        climate_before = len(df)
+        df = df[df['climate_score'].notna()]
+        climate_removed = climate_before - len(df)
+        logger.info(f"  Filter 3: Valid climate scores (removed {climate_removed} rows)")
+    
+    # FILTER 4: Paired data requirement
+    # Only keep rows where we have both stock and climate data
+    required_cols = [col for col in REQUIRED_COLUMNS if col in df.columns]
+    paired_before = len(df)
+    df = df[df[required_cols].notna().all(axis=1)]
+    paired_removed = paired_before - len(df)
+    logger.info(f"  Filter 4: Paired observations (removed {paired_removed} rows)")
+    
+    # FILTER 5: Returns validity
+    if 'returns' in df.columns:
+        returns_before = len(df)
+        # Keep only valid numeric returns (not NaN or infinite)
+        df = df[(df['returns'].notna()) & (np.isfinite(df['returns']))]
+        returns_removed = returns_before - len(df)
+        logger.info(f"  Filter 5: Valid returns (removed {returns_removed} rows)")
+    
+    # FILTER 6: Minimum company observations
+    if 'ticker' in df.columns:
+        company_counts = df['ticker'].value_counts()
+        small_companies = company_counts[company_counts < MIN_OBSERVATIONS].index
+        if len(small_companies) > 0:
+            df = df[~df['ticker'].isin(small_companies)]
+            logger.info(f"  Filter 6: Companies with >={MIN_OBSERVATIONS} obs (removed {len(small_companies)} companies)")
     
     rows_removed = rows_before - len(df)
+    if rows_removed > 0:
+        pct_removed = (rows_removed / rows_before * 100)
+        logger.info(f"  ✓ Total: {rows_removed} rows removed ({pct_removed:.1f}%)")
+    
+    return df
+
+    return df
+
     if rows_removed > 0:
         logger.info(f"  Total rows removed: {rows_removed} ({rows_removed/rows_before*100:.1f}%)")
     
@@ -302,9 +356,9 @@ def save_cleaned_data(df, filename=PROCESSED_FILENAME):
 # ============================================================================
 
 def main():
-    """Execute the complete data cleaning pipeline."""
+    """Execute the complete climate and stocks data cleaning pipeline."""
     logger.info("\n" + "=" * 70)
-    logger.info("DATASET2 DATA FETCH & CLEAN PIPELINE")
+    logger.info("CLIMATE & STOCKS DATA FETCH & CLEAN PIPELINE")
     logger.info("=" * 70 + "\n")
     
     try:
