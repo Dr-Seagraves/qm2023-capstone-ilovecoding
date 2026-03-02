@@ -1,0 +1,52 @@
+
+SUMMARY: Climate Risks Paper (SSRN-3795964)
+================================================================================
+
+TITLE: Dissecting Climate Risks: Are they Reflected in Stock Prices?
+AUTHORS: Faccini, Matin & Skiadopoulos (2023)
+PAGES: 70
+
+KEY FINDINGS FROM ABSTRACT:
+- Studies period: January 2000 - December 2018
+- Uses textual analysis of Reuters climate-change news
+- Identifies 4 novel risk factors:
+  1. Natural Disasters (Physical Risk)
+  2. Global Warming (Physical Risk)  
+  3. International Summits (Transition Risk)
+  4. U.S. Climate Policy (Transition Risk)
+
+KEY RESULT: Only climate-policy factor is priced (especially post-2012)
+INTERPRETATION: Investors hedge TRANSITION risks from government intervention
+              rather than direct physical risks from climate change
+
+RELEVANCE TO REIT ANALYSIS:
+================================================================================
+1. REITs are highly sensitive to climate risks:
+   - Physical: Property damage from natural disasters
+   - Transition: Regulatory changes, carbon taxes, green building requirements
+
+2. Climate policy affects interest rates:
+   - Government intervention → monetary policy response
+   - Carbon pricing → inflation expectations → rate changes
+   - Green transition → capital flows → interest rate dynamics
+
+3. Lagged effects in REITs:
+   - Policy announcements → gradual implementation
+   - Market adjustment takes time (information diffusion)
+   - Real estate responses lag due to transaction costs
+   - Similar to paper's finding of post-2012 pricing
+
+METHODOLOGY TO ADAPT:
+================================================================================
+1. Textual analysis approach (LDA) for risk factor identification
+2. Time-varying factor loadings
+3. Portfolio sorts to test pricing
+4. Cross-sectional tests with control variables
+5. Examination of lagged and persistent effects
+
+APPLICATION TO OUR ANALYSIS:
+================================================================================
+- Examine how climate/policy shocks affect REIT returns over time
+- Test for lagged effects similar to interest rate changes
+- Consider both immediate and delayed responses
+- Account for regime changes (e.g., post-2012 in their paper)
