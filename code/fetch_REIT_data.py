@@ -181,8 +181,8 @@ def identify_outliers_zscore(series, threshold=OUTLIER_THRESHOLD):
     Returns:
         pd.Series: Boolean series indicating outliers
     """
-    z_scores = np.abs(stats.zscore(series.dropna()))
-    return np.abs(stats.zscore(series)) > threshold
+    z_scores = np.abs(stats.zscore(series, nan_policy='omit'))
+    return z_scores > threshold
 
 
 def handle_outliers(df, method=OUTLIER_METHOD, numeric_only=True):
