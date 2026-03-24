@@ -12,7 +12,7 @@ import sys
 
 # Add project root to path
 sys.path.append(str(Path(__file__).parent))
-from config_paths import RAW_DATA_DIR, PROCESSED_DATA_DIR, FIGURES_DIR
+from config_paths import PROCESSED_DATA_DIR, FIGURES_DIR
 
 # Set style
 sns.set_style("whitegrid")

@@ -18,15 +18,12 @@ Date: [March 24, 2026]
 
 import pandas as pd
 import numpy as np
-from pathlib import Path
 from scipy import stats
 import warnings
+from config_paths import TABLES_DIR
+from utils import load_analysis_panel
 
 warnings.filterwarnings('ignore')
-
-# Import centralized path configuration and shared utilities
-from config_paths import FINAL_DATA_DIR, TABLES_DIR
-from utils import load_analysis_panel
 
 # ============================================================================
 # Configuration
@@ -98,7 +95,7 @@ def summary_stats_by_size_quartile(df):
         'count', 'mean', 'std', 'min', 'median', 'max'
     ])
     
-    print(f"Size quartiles defined by market cap")
+    print("Size quartiles defined by market cap")
     print(f"  {summary_by_size.index.tolist()}")
     
     return summary_by_size
@@ -339,7 +336,7 @@ def main():
     pearson_corr, spearman_corr, pvalues = correlation_analysis(df)
     
     # Pre/Post 2012 comparison
-    period_comparison = compare_periods(df)
+    compare_periods(df)
     
     # Export results
     export_tables(summary_by_year, desc_stats, pearson_corr)

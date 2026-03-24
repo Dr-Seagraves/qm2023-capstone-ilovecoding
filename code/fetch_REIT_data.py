@@ -28,7 +28,6 @@ Last Modified: [2/19/2026]
 
 import pandas as pd
 import numpy as np
-from pathlib import Path
 from scipy import stats
 
 # Import centralized path configuration
@@ -111,7 +110,7 @@ def clean_missing_values(df, threshold=MISSING_VALUE_THRESHOLD):
     
     # Step 1: Calculate missing value percentages
     missing_pct = df.isnull().sum() / len(df)
-    print(f"\nMissing Values Summary:")
+    print("\nMissing Values Summary:")
     print(f"  Columns with >5% missing: {missing_pct[missing_pct > 0.05].to_dict()}")
     
     # Step 2: Drop columns with excessive missing values
@@ -264,10 +263,10 @@ def remove_duplicates(df):
     }
     
     if summary["duplicates_found"] > 0:
-        print(f"\nRemoving Duplicates:")
+        print("\nRemoving Duplicates:")
         print(f"  Found {summary['duplicates_found']} duplicate rows")
         df = df.drop_duplicates(keep='first')
-        print(f"  ✓ Duplicates removed")
+        print("  ✓ Duplicates removed")
     
     summary["rows_after"] = len(df)
     
@@ -301,7 +300,7 @@ def apply_filters(df):
         "filters_applied": []
     }
     
-    print(f"\nApplying REIT-Specific Filters:")
+    print("\nApplying REIT-Specific Filters:")
     
     # FILTER 1: Date/Year range
     if 'date' in df.columns:
@@ -370,7 +369,7 @@ def save_cleaned_data(df, filename=PROCESSED_FILENAME):
     """
     output_path = PROCESSED_DATA_DIR / filename
     
-    print(f"\nSaving cleaned data:")
+    print("\nSaving cleaned data:")
     print(f"  Output file: {output_path}")
     
     df.to_csv(output_path, index=False)
@@ -422,7 +421,7 @@ def main():
     print(f"Initial rows: {missing_summary['rows_before']:,}")
     print(f"Final rows: {len(df):,} ({(len(df)/missing_summary['rows_before']*100):.1f}% retained)")
     print(f"Final columns: {len(df.columns)}")
-    print(f"\nData Quality Metrics:")
+    print("\\nData Quality Metrics:")
     print(f"  - Columns dropped: {missing_summary['cols_before'] - missing_summary['cols_after']}")
     print(f"  - Outliers handled: {outlier_summary['outliers_found']}")
     print(f"  - Duplicates removed: {duplicate_summary['duplicates_found']}")

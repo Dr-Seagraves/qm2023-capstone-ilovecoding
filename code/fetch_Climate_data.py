@@ -36,7 +36,6 @@ Last Modified: [2/19/2026]
 
 import pandas as pd
 import numpy as np
-from pathlib import Path
 import logging
 
 # Import centralized path configuration
@@ -106,14 +105,13 @@ def clean_missing_values(df, threshold=MISSING_THRESHOLD):
     logger.info("CLEANING MISSING VALUES")
     logger.info("=" * 50)
     
-    rows_before = len(df)
     cols_before = len(df.columns)
     
     # Identify columns with excessive missing values
     missing_pct = (df.isnull().sum() / len(df) * 100).sort_values(ascending=False)
     
     if len(missing_pct[missing_pct > 0]) > 0:
-        logger.info(f"\nMissing value percentages (>0%):")
+        logger.info("\nMissing value percentages (>0%):")
         for col, pct in missing_pct[missing_pct > 0].items():
             logger.info(f"  {col}: {pct:.1f}%")
     
@@ -203,7 +201,7 @@ def remove_duplicates(df):
     if dup_count > 0:
         logger.info(f"  Found {dup_count} duplicate rows")
         df = df.drop_duplicates(keep='first')
-        logger.info(f"  ✓ Duplicates removed")
+        logger.info("  ✓ Duplicates removed")
     else:
         logger.info("  No duplicates found")
     

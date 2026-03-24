@@ -1,8 +1,7 @@
-"""
-Visualize REIT Climate Summary Statistics
-"""
+"""Visualize REIT Climate Summary Statistics"""
 
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from pathlib import Path
@@ -67,7 +66,6 @@ ax3.set_xlim(-1.2, 1.2)
 ax3.set_ylim(-0.2, 1.2)
 
 # Draw arc
-import numpy as np
 arc_theta = np.linspace(0, np.pi, 100)
 arc_x = np.cos(arc_theta)
 arc_y = np.sin(arc_theta)

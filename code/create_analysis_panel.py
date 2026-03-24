@@ -14,7 +14,6 @@ Date: [2/19/2026]
 
 import pandas as pd
 import numpy as np
-from pathlib import Path
 from config_paths import PROCESSED_DATA_DIR, FINAL_DATA_DIR
 
 # ============================================================================
@@ -119,7 +118,7 @@ def verify_panel(df):
     n_years = df['year'].nunique()
     n_obs = len(df)
     
-    print(f"\n  Dataset Structure:")
+    print("\n  Dataset Structure:")
     print(f"    Entities: {n_entities}")
     print(f"    Years: {n_years} ({df['year'].min()}-{df['year'].max()})")
     print(f"    Observations: {n_obs:,}")
@@ -135,7 +134,7 @@ def save_final_panel(df, filename=FINAL_OUTPUT):
     """Save analysis-ready panel to CSV."""
     output_path = FINAL_DATA_DIR / filename
     
-    print(f"\nSaving Final Analysis Panel...")
+    print("\nSaving Final Analysis Panel...")
     df.to_csv(output_path, index=False)
     
     print(f"  Output: {output_path}")
@@ -179,7 +178,7 @@ def main():
     df = verify_panel(df)
     
     # Generate summary stats
-    summary = generate_summary_stats(df)
+    generate_summary_stats(df)
     
     # Save final dataset
     output_path = save_final_panel(df)

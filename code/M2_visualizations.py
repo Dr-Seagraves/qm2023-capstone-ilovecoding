@@ -13,19 +13,15 @@ Author: [Team]
 Date: [March 24, 2026]
 """
 
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-from pathlib import Path
 import warnings
+from config_paths import FIGURES_DIR
+from utils import load_analysis_panel
 
 warnings.filterwarnings('ignore')
-
-# Import centralized path configuration and shared utilities
-from config_paths import FINAL_DATA_DIR, FIGURES_DIR
-from utils import load_analysis_panel
 
 # Set style
 sns.set_style("whitegrid")
