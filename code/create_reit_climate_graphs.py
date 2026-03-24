@@ -18,6 +18,14 @@ from config_paths import RAW_DATA_DIR, PROCESSED_DATA_DIR, FIGURES_DIR
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (12, 6)
 
+
+def save_and_close(filename):
+    """Save current matplotlib figure and close it."""
+    output_path = FIGURES_DIR / filename
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    print(f"✓ Saved: {output_path}")
+    plt.close()
+
 # Create sample data based on typical REIT climate risk research
 np.random.seed(42)
 
@@ -61,9 +69,7 @@ ax2.tick_params(axis='y', labelcolor=color)
 
 plt.title('REIT Returns vs Climate Risk Index (2010-2023)', fontsize=14, fontweight='bold')
 fig.tight_layout()
-plt.savefig(FIGURES_DIR / 'reit_climate_timeseries.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'reit_climate_timeseries.png'}")
-plt.close()
+save_and_close('reit_climate_timeseries.png')
 
 # Graph 2: Scatter plot with correlation
 fig, ax = plt.subplots(figsize=(10, 6))
@@ -95,9 +101,7 @@ cbar = plt.colorbar(scatter, ax=ax)
 cbar.set_label('Year', fontsize=10)
 
 plt.tight_layout()
-plt.savefig(FIGURES_DIR / 'reit_climate_correlation.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'reit_climate_correlation.png'}")
-plt.close()
+save_and_close('reit_climate_correlation.png')
 
 # Graph 3: REIT sector exposure to climate risk
 sectors = ['Residential', 'Commercial', 'Industrial', 'Retail', 'Healthcare', 'Data Centers']
@@ -133,9 +137,7 @@ for i, v in enumerate(df_sectors['Avg_Returns']):
     ax2.text(v + 0.2, i, f'{v:.1f}%', va='center', fontsize=10)
 
 plt.tight_layout()
-plt.savefig(FIGURES_DIR / 'reit_sector_comparison.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'reit_sector_comparison.png'}")
-plt.close()
+save_and_close('reit_sector_comparison.png')
 
 # Graph 4: Heatmap of year-over-year changes
 years_short = [2019, 2020, 2021, 2022, 2023]
@@ -160,9 +162,7 @@ ax.set_xlabel('Year', fontsize=12)
 ax.set_ylabel('Metric', fontsize=12)
 
 plt.tight_layout()
-plt.savefig(FIGURES_DIR / 'reit_climate_heatmap.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'reit_climate_heatmap.png'}")
-plt.close()
+save_and_close('reit_climate_heatmap.png')
 
 # Create summary statistics
 summary_stats = pd.DataFrame({

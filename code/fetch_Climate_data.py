@@ -285,15 +285,6 @@ def apply_filters(df):
     
     return df
 
-    return df
-
-    if rows_removed > 0:
-        logger.info(f"  Total rows removed: {rows_removed} ({rows_removed/rows_before*100:.1f}%)")
-    
-    logger.info(f"Result: {len(df):,} rows")
-    
-    return df
-
 
 # ============================================================================
 # Section 8: Final Data Validation
