@@ -15,13 +15,13 @@ This report presents the econometric analysis of Milestone 3, which transitions 
 
 **Key Findings:**
 
-1. **Fixed Effects Model (Panel Regression):** Lagged leverage has statistically significant effects on REIT returns. A 1-percentage-point increase in the previous month's debt-to-assets ratio increases current returns by approximately 0.71 basis points (1-month lag, p=0.469). Systematic risk (beta) has a highly significant positive effect: a 1-unit increase in beta increases expected returns by 61 basis points (p<0.001).
+1. **Systematic Risk (Beta) — Robust & Highly Significant (✅ Primary Finding):** A 1-unit increase in beta (systematic market risk) increases expected monthly returns by **61 basis points** (t=4.46, p<0.001). This effect is **robust across all specifications**, outlier-removal tests, and time periods, and is theoretically consistent with the Capital Asset Pricing Model (CAPM). This is our most defensible and publication-ready finding.
 
-2. **Difference-in-Differences Analysis:** The analysis compares large-cap REITs (treatment group) to smaller REITs (control group) across a policy shock boundary (2015). Large REITs experienced statistically insignificant differential return behavior post-2015 (treatment effect = 0.20%, p=0.247), suggesting limited heterogeneous policy impacts by size category.
+2. **Firm Leverage — Weak & Unstable (⚠️ Not Robust):** While the main-sample fixed effects coefficient on 1-month lagged leverage is 0.71 basis points, this effect is **not statistically significant** (p=0.469) and fails robustness checks: the effect reverses sign when outliers are removed (−7.6 bps), magnitude varies 200%+ across subsamples, and p-values range from 0.07 to 0.85. **We find no compelling evidence that firm leverage is a causal predictor of REIT returns.**
 
-3. **Model Diagnostics:** The fixed effects model exhibits mild heteroskedasticity and low within-entity R² (−0.0006), suggesting that firm-level variation in leverage explains little of cross-sectional return variation. This is economically sensible given the efficient markets hypothesis and the noisy nature of monthly returns.
+3. **Heterogeneous Policy Effects (DiD) — Null Finding:** Large-cap REITs did not experience significantly different post-2015 return behavior compared to controls (p=0.247). This null result is defensible and suggests either successful hedging by large firms, or that size is not a valid proxy for rate sensitivity.
 
-4. **Robustness & Interpretation:** Coefficients are stable across alternative lag specifications and time periods, suggesting causal identification is plausible under the assumption that entity and time fixed effects adequately control for confounders.
+4. **Implications for Interpretation:** The contrast between robust beta effects and fragile leverage effects illustrates the importance of rigorous robustness testing. This report prioritizes transparency about which findings are publication-ready and which require caution.
 
 ---
 
