@@ -24,6 +24,10 @@ This folder consolidates all milestone-related checklists, submission guides, an
 - **[FINAL_SUBMISSION_READY.txt](FINAL_SUBMISSION_READY.txt)** — Final submission readiness checklist
 - **[FINAL_SUBMISSION_STATUS.txt](FINAL_SUBMISSION_STATUS.txt)** — Current submission status
 
+### **Milestone 4 (M4) — Final Investment Memo**
+- **[M4_IMPLEMENTATION_CHECKLIST.md](M4_IMPLEMENTATION_CHECKLIST.md)** — Complete step-by-step guide for writing M4 (START HERE!)
+- **[M4_RUBRIC.md](M4_RUBRIC.md)** — Grading rubric (50 points) with evaluation criteria
+
 ### **Guides & Reference**
 - **[GIT_COMMIT_GUIDE.md](GIT_COMMIT_GUIDE.md)** — Git workflow and commit strategy
 - **[MERGE_TO_MAIN_GUIDE.md](MERGE_TO_MAIN_GUIDE.md)** — Guide for merging branch to main
@@ -36,20 +40,33 @@ This folder consolidates all milestone-related checklists, submission guides, an
 
 ## Quick Navigation
 
-**Starting Point:** 
-- If this is your first time: Read [QUICK_REFERENCE.txt](QUICK_REFERENCE.txt)
-- If preparing M3 submission: See [M3_SUBMISSION_CHECKLIST.md](M3_SUBMISSION_CHECKLIST.md)
-- If checking quality: See [M3_RUBRIC_DEFENSE_STATEMENTS.md](M3_RUBRIC_DEFENSE_STATEMENTS.md)
+**Starting Point (Choose Your Milestone):** 
 
-**Before Publishing/Submitting:**
-- Review [PUBLICATION_READINESS_AUDIT.md](PUBLICATION_READINESS_AUDIT.md)
-- Check [FINAL_SUBMISSION_READY.txt](FINAL_SUBMISSION_READY.txt)
+**For Milestone 4:** ⭐ **START HERE** → [M4_IMPLEMENTATION_CHECKLIST.md](M4_IMPLEMENTATION_CHECKLIST.md)
+- Complete guide to writing the Final Investment Memo (Due: May 1, 2026)
+- Templates, workflows, and team checklist
+
+**For Milestone 3:** 
+- M3 submission: [M3_SUBMISSION_CHECKLIST.md](M3_SUBMISSION_CHECKLIST.md)
+- Quality check: [M3_RUBRIC_DEFENSE_STATEMENTS.md](M3_RUBRIC_DEFENSE_STATEMENTS.md)
+
+**General:**
+- First time: Read [QUICK_REFERENCE.txt](QUICK_REFERENCE.txt)
+- Before publishing: Review [PUBLICATION_READINESS_AUDIT.md](PUBLICATION_READINESS_AUDIT.md)
 
 **For Current Work:**
-- **Regression Tables:** `results/tables/M3_REGRESSION_TABLE_FORMATTED.csv` or `.xlsx`
-- **Findings Report:** `results/reports/M3_findings_report.md`
-- **Model Code:** `code/capstone_models.py`
-- **Diagnostics:** `results/figures/M3_*.png`
+- **M4 Templates (results/reports/):** 
+  - `memo_template.md` — Full memo template with examples
+  - `individual_addendum_template.md` — Individual contribution template
+  - `Final_Investment_Memo_DRAFT.md` — Starter draft (fill in your content)
+- **M3 Resources (results/reports/):**
+  - `M3_findings_report.md` — Source material for memo interpretations
+- **Regression Tables (results/tables/):**
+  - `M3_REGRESSION_TABLE_FORMATTED.csv` or `.xlsx` — Publication-ready tables
+- **Diagnostic Plots (results/figures/):**
+  - `M3_residuals_diagnostics.png` and others
+- **Model Code (code/):**
+  - `capstone_models.py` — Reproducible econometric analysis
 
 ---
 
