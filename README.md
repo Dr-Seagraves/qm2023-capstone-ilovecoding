@@ -108,24 +108,6 @@ qm2023-capstone-ilovecoding/
    ```
    Expected output: Table of all project paths and verification that directories exist.
 
-<<<<<<< HEAD
-## How to Run the Pipeline
-
-1. **Run REIT data cleaning pipeline:**
-   ```bash
-   python code/fetch_REIT_data.py
-   ```
-
-2. **Run climate and stocks data cleaning pipeline:**
-   ```bash
-   python code/fetch_Climate_data.py
-   ```
-
-3. **Create analysis panels** (once data cleaning is complete):
-   ```bash
-   python code/create_analysis_panel.py
-   ```
-=======
 ### Data Preparation & Processing
 
 Run the data pipeline in this order:
@@ -188,5 +170,4 @@ python code/M2_visualizations.py
 - `results/figures/M2_timeseries_plots.png` — Time-series analysis
 - `results/figures/M2_scatter_analysis.png` — Relationship scatter plots
 - `results/figures/M2_volatility_analysis.png` — Return volatility over time
->>>>>>> origin/Ashley's-Branch
 
