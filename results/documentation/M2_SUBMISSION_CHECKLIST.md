@@ -290,7 +290,7 @@ Milestone 2 focuses on **Exploratory Data Analysis (EDA)** using the cleaned ana
 | **Findings Report** | `results/reports/M2_findings_report.md` | Markdown | 15 KB | ✅ |
 | **EDA Analysis Script** | `code/M2_exploratory_analysis.py` | Python | 13 KB | ✅ |
 | **Visualization Script** | `code/M2_visualizations.py` | Python | 15 KB | ✅ |
-| **M2 Checklist** | `M2_SUBMISSION_CHECKLIST.md` | Markdown | 28 KB | ✅ |
+| **M2 Checklist** | `results/reports/M2_SUBMISSION_CHECKLIST.md` | Markdown | 28 KB | ✅ |
 | **Updated Requirements** | `requirements.txt` | Text | 0.15 KB | ✅ |
 
 **Total Outputs:** 12 files | **Total Size:** ~10.2 MB | **Status:** ✅ All Complete

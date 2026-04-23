@@ -67,11 +67,15 @@ qm2023-capstone-ilovecoding/
 │   │   └── reit_climate_summary_visualization.png
 │   │
 │   ├── tables/                         # Regression tables & summary stats
-│   │   └── (pending M2 analysis)
+│   │   ├── M2_summary_statistics.csv
+│   │   ├── M2_descriptive_stats_table.csv
+│   │   └── M2_correlation_matrix.csv
 │   │
 │   └── reports/                        # Milestone documentation
 │       ├── M1_data_quality_report.md   # M1 Output: Data cleaning justification
-│       └── AI_AUDIT_APPENDIX.md        # M1 Output: AI usage disclosure
+│       ├── AI_AUDIT_APPENDIX.md        # M1 Output: AI usage disclosure
+│       ├── M2_findings_report.md       # M2 Output: EDA findings
+│       └── M2_SUBMISSION_CHECKLIST.md  # M2 Output: deliverable checklist
 │
 └── tests/                              # Autograding test suite
 ```
@@ -108,24 +112,6 @@ qm2023-capstone-ilovecoding/
    ```
    Expected output: Table of all project paths and verification that directories exist.
 
-<<<<<<< HEAD
-## How to Run the Pipeline
-
-1. **Run REIT data cleaning pipeline:**
-   ```bash
-   python code/fetch_REIT_data.py
-   ```
-
-2. **Run climate and stocks data cleaning pipeline:**
-   ```bash
-   python code/fetch_Climate_data.py
-   ```
-
-3. **Create analysis panels** (once data cleaning is complete):
-   ```bash
-   python code/create_analysis_panel.py
-   ```
-=======
 ### Data Preparation & Processing
 
 Run the data pipeline in this order:
@@ -188,5 +174,13 @@ python code/M2_visualizations.py
 - `results/figures/M2_timeseries_plots.png` — Time-series analysis
 - `results/figures/M2_scatter_analysis.png` — Relationship scatter plots
 - `results/figures/M2_volatility_analysis.png` — Return volatility over time
->>>>>>> origin/Ashley's-Branch
+
+### Milestone 3: Regression Outputs
+
+When you add the final M3 deliverables, keep the results in `results/tables/` and format the main regression table in a standard academic style:
+- One column per model
+- Variables listed in the leftmost column
+- Standard errors in parentheses beneath coefficients
+- Summary rows for fixed effects, clustered standard errors, observations, and adjusted R-squared
+- Export the final table as CSV or Excel for easy review
 
