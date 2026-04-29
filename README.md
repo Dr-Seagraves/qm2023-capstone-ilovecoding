@@ -67,11 +67,15 @@ qm2023-capstone-ilovecoding/
 │   │   └── reit_climate_summary_visualization.png
 │   │
 │   ├── tables/                         # Regression tables & summary stats
-│   │   └── (pending M2 analysis)
+│   │   ├── M2_summary_statistics.csv
+│   │   ├── M2_descriptive_stats_table.csv
+│   │   └── M2_correlation_matrix.csv
 │   │
 │   └── reports/                        # Milestone documentation
 │       ├── M1_data_quality_report.md   # M1 Output: Data cleaning justification
-│       └── AI_AUDIT_APPENDIX.md        # M1 Output: AI usage disclosure
+│       ├── AI_AUDIT_APPENDIX.md        # M1 Output: AI usage disclosure
+│       ├── M2_findings_report.md       # M2 Output: EDA findings
+│       └── M2_SUBMISSION_CHECKLIST.md  # M2 Output: deliverable checklist
 │
 └── tests/                              # Autograding test suite
 ```
