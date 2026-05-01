@@ -154,24 +154,128 @@ python code/visualize_summary_stats.py
 ```
 **Output:** Summary statistics visualization
 
-### Milestone 2: Exploratory Data Analysis & Visualization
+### Milestone 3 & 4: Econometric Models & Investment Recommendations
 
-#### Step 1: Generate Summary Statistics & Correlations
+#### Step 1: Estimate Fixed Effects & Difference-in-Differences Models
 ```bash
-python code/M2_exploratory_analysis.py
+python code/M3_econometric_models.py
 ```
 **Outputs:**
-- `results/tables/M2_summary_statistics.csv` — Statistics by year/size
-- `results/tables/M2_descriptive_stats_table.csv` — Manuscript-ready summary
-- `results/tables/M2_correlation_matrix.csv` — Pearson/Spearman correlations
+- `results/tables/M3_regression_table.csv` — Raw regression results
+- `results/tables/M3_diagnostics_summary.csv` — Model diagnostics (R², F-stat, VIF)
+- `results/tables/M3_robustness_checks.csv` — Robustness specifications
+- `results/figures/M3_diagnostics.png` — Residual diagnostics & Q-Q plots
 
-#### Step 2: Generate Visualizations
+#### Step 2: Format Results for Publication
 ```bash
-python code/M2_visualizations.py
+python code/format_regression_tables.py
 ```
-**Outputs:**
-- `results/figures/M2_distributions.png` — Return distributions & normality tests
-- `results/figures/M2_timeseries_plots.png` — Time-series analysis
-- `results/figures/M2_scatter_analysis.png` — Relationship scatter plots
-- `results/figures/M2_volatility_analysis.png` — Return volatility over time
+**Output:** `results/tables/M3_REGRESSION_TABLE_FORMATTED.csv` — Academic-style regression table
+
+#### Step 3: Review Investment Recommendations
+See: `results/reports/Final_Investment_Memo.md` (18 pages, full analysis)
+Or: `results/reports/EXECUTIVE_SUMMARY_ONE_PAGE.md` (executive summary)
+
+---
+
+## Key Findings (M3/M4 Final Results)
+
+### 🎯 Main Result: Beta Drives Returns; Leverage Does Not
+
+| Finding | Magnitude | Confidence | Implication |
+|---------|-----------|-----------|-------------|
+| **Beta Effect** | 61 bps/month (~7.3% annualized) | ✅ Very High | Market-sensitive REITs consistently outperform. Deploy beta-targeting strategies. |
+| **Leverage Effect** | ~1 bps/month (statistically zero) | ✅ High | Leverage does NOT predict REIT returns. Ignore leverage-based tilts. |
+| **Policy Shock (DiD)** | 20 bps post-2015 (not significant, 95% CI: [-15, 55]) | 🟡 Moderate | No evidence that Fed rate hikes differentially hurt high-leverage REITs. |
+
+### 📊 Data & Sample
+
+- **Dataset:** 34,121 monthly observations from 273 unique REITs
+- **Time Period:** January 2000 – December 2024 (25 years, 299 months)
+- **Panel Structure:** Unbalanced; spans 2008 crisis, 2020 pandemic, multiple Fed cycles
+- **Fixed Effects:** Entity + Time (controls for REIT quality and aggregate shocks)
+- **Clustering:** Entity-level (accounts for within-REIT correlation)
+
+### 📈 Models Estimated
+
+**Model A: Two-Way Fixed Effects (Primary)**
+- Tests whether lagged leverage & beta predict monthly returns
+- Controls for unobserved REIT characteristics & time-invariant shocks
+- Result: Leverage insignificant; Beta robust (61 bps, p<0.001)
+
+**Model B: Difference-in-Differences (Policy Shock)**
+- Compares large-cap vs. small-cap REITs before/after 2015 Fed rate shift
+- Tests whether monetary policy reveals leverage effects
+- Result: No differential effect; treatment coefficient = +20 bps, p=0.247
+
+---
+
+## Quick Links for Decision-Makers
+
+| Need | Resource | Format |
+|------|----------|--------|
+| **10-min overview** | [Executive Summary (1 page)](results/reports/EXECUTIVE_SUMMARY_ONE_PAGE.md) | Markdown |
+| **Full analysis + recommendations** | [Final Investment Memo (18 pages)](results/reports/Final_Investment_Memo.md) | Markdown |
+| **Regression results** | [Regression Table (formatted)](results/tables/M3_REGRESSION_TABLE_FORMATTED.csv) | CSV |
+| **Diagnostic plots** | [Model Diagnostics](results/figures/M3_diagnostics.png) | PNG |
+| **Team contributions** | [Individual Addendums](results/reports/Individual_Addendum_*.md) | Markdown |
+| **Results summary** | [Technical Summary](results/RESULTS_SUMMARY.md) | Markdown |
+
+---
+
+## Reproducibility & Verification
+
+### Reproduce All Results (5 minutes)
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Run full analysis pipeline
+python code/M3_econometric_models.py
+python code/format_regression_tables.py
+
+# 3. Verify outputs
+ls -lh results/tables/M3_REGRESSION_TABLE_FORMATTED.csv
+ls -lh results/figures/M3_diagnostics.png
+
+# Expected: Both files exist and are non-empty
+```
+
+### Key Outputs Checklist
+
+- ✅ `results/tables/M3_REGRESSION_TABLE_FORMATTED.csv` — Regression coefficients (should have 8 rows: Leverage Lag 1–3, Beta, Treatment, Post2015, Treatment×Post)
+- ✅ `results/figures/M3_diagnostics.png` — Residual plots (should show heteroskedasticity and Q-Q comparison)
+- ✅ `results/reports/Final_Investment_Memo.md` — Investment memo (should be ~21–22 pages, ~711 lines)
+- ✅ `results/reports/EXECUTIVE_SUMMARY_ONE_PAGE.md` — 1-page summary (for decision-makers)
+
+### Data Integrity Checks
+
+Run these to verify data hasn't been corrupted:
+
+```bash
+# Check final analysis panel dimensions
+python -c "import pandas as pd; df = pd.read_csv('data/final/REIT_analysis_panel.csv'); print(f'Shape: {df.shape}'); print(f'Columns: {list(df.columns)[:5]}...')"
+# Expected: (34121, 20)
+
+# Check regression input has no NaNs in key variables
+python -c "import pandas as pd; df = pd.read_csv('data/final/REIT_analysis_panel.csv'); print(f'Missing in return_pct: {df[\"return_pct\"].isna().sum()}'); print(f'Missing in leverage: {df[\"leverage_lag2\"].isna().sum()}')"
+# Expected: Both should be 0 or very small
+```
+
+### Regression Results Validation
+
+Expected coefficient magnitudes from `M3_REGRESSION_TABLE_FORMATTED.csv`:
+
+| Variable | Expected Coefficient | Expected p-value | Your Result |
+|----------|---------------------|-----------------|-------------|
+| Leverage_lag2 | ~0.007 | ~0.077 | _______ |
+| Beta | ~0.0061 | <0.001 | _______ |
+| Treatment×Post2015 | ~0.002 | ~0.247 | _______ |
+
+**If coefficients match within ±0.0005, reproducibility verified ✓**
+
+---
+
+## File Descriptions
 
