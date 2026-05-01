@@ -84,6 +84,8 @@ Tests whether large-cap REITs (higher leverage, rate-sensitive) experienced diff
 
 Coefficients remain stable across outlier sensitivity (±4 SD winsorization), time splitting (pre/post-2015), and sector subsamples. Beta premium ranges 0.52–0.75% across property types; leverage remains non-significant in all sectors except Healthcare (p=0.066, marginal).
 
+**Diagnostic Validation** (Figure 1): Residual plots and Q-Q diagnostic tests confirm model assumptions: no systematic heteroskedasticity pattern observed; residuals approximately normally distributed ([M3_diagnostics.png](../figures/M3_diagnostics.png)).
+
 ---
 
 ## Conclusions & Recommendations
